@@ -1,0 +1,28 @@
+.signinformtitle {
+    text-align: left;
+    justify-content: center;
+    padding-left: 20px;
+    padding-top: 30px;
+}
+
+.formpasswordtext {
+    text-align: left;
+    justify-content: center;
+    padding-left: 20px;
+    padding-top: 30px;
+}
+
+.formusernametext {
+    text-align: left;
+    padding-left: 20px;
+    
+}
+
+.formusername {
+    width: 80%;
+}
+
+.formpassword {
+    width: 80%;
+    padding-bottom: 20px;
+}

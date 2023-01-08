@@ -1,0 +1,9 @@
+.formtext {
+    text-align: left;
+    justify-content: center;
+    padding-left: 20px;
+    padding-top: 30px;
+}
+.formentry {
+    width: 80%;
+}

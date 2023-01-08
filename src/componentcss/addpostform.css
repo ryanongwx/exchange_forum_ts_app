@@ -1,0 +1,33 @@
+.newposttitle {
+    text-align: left;
+    justify-content: center;
+    padding-left: 20px;
+    padding-top: 30px;
+}
+
+.newpostbody {
+    text-align: left;
+    justify-content: center;
+    padding-left: 20px;
+    padding-top: 30px;
+}
+
+.postformtitle {
+    text-align: left;
+    padding-left: 20px;
+    
+}
+
+.formtitle {
+    width: 80%;
+}
+
+.formbody {
+    height: 380px;
+    width: 80%;
+    padding-bottom: 20px;
+}
+
+.submitbutton {
+    
+}

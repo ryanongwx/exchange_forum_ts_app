@@ -1,0 +1,54 @@
+
+.hs {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(0, calc(50% - 40px));
+    grid-template-rows: minmax(150px, 3fr);
+    padding: 0 20px;
+    overflow-y: scroll;
+  }
+  
+  .item {
+    position: relative;
+    scroll-snap-align: center;
+    display: flex;
+    flex-direction: column;
+    background: rgb(119, 169, 226);
+    border-radius: 8px;
+    height: 100%;
+  }
+  .hs > li:last-child {
+    margin-right: 20px;
+  }
+  
+  .posttitle {
+      padding-left: 10px;
+      padding-right: 10px;
+      text-align: left;
+  }
+
+  .postdate {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+  }
+
+  .postbody {
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: center;
+  }
+
+  .recommend {
+    margin-right: 10px;
+    text-align: right;
+
+  }
+
+  .sidebyside { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-gap: 20px;
+    width: 100%; 
+} 
