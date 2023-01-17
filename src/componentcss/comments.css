@@ -1,11 +1,11 @@
 .vs {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: minmax(100px, 1fr);
-    grid-template-rows: repeat(1, calc(50% - 40px));
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto-fill) ;
     padding: 0 20px;
-    overflow-x: scroll;
-    height: 95%;
+    overflow-x: hidden;
+    height: 280px;
   }
   
   .vitem {
@@ -26,13 +26,24 @@
   }
 
   .crecommend {
-    position:s absolute;
-    margin-left: 10px;
+    position:s relative;
     bottom: 0;
   }
 
   .cunrecommend {
-    margin-left: 50px;
-    position: absolute;
+    position: relative;
     bottom: 0;
+    margin-right: 70px;
+  }
+
+  .button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .deletebutton1 {
+    position: absolute;
+    right: 0;
+    height: 100%;
   }

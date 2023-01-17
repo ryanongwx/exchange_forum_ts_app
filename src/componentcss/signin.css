@@ -1,8 +1,6 @@
 .signinformtitle {
     text-align: left;
-    justify-content: center;
     padding-left: 20px;
-    padding-top: 30px;
 }
 
 .formpasswordtext {
@@ -26,3 +24,8 @@
     width: 80%;
     padding-bottom: 20px;
 }
+
+.createuserlink {
+    text-decoration: none;
+}
+

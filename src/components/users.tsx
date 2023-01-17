@@ -7,6 +7,8 @@ interface User {
     password: string;
     created_at: string;
     updated_at: string;
+    username: string;
+    token: string;
 }
 
 interface UserProps {

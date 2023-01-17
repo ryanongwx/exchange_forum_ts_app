@@ -1,15 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import "../componentcss/signin.css"
-import Users from './users';
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-interface User {
-    bio: string;
-    image_id: string;
-    id: number
-    password: string;
-    username:string;
-  }
+
 
 function SignIn() {
 
@@ -18,10 +14,14 @@ function SignIn() {
     const [allusers , setUsers] = useState([{
         bio: "",
         image_id: "",
-        id: "",
+        id: 0,
         password: "",
-        username:""
+        username:"",
+        token: "",
+        created_at: "",
+        updated_at: "",
     }]);
+    const navigate = useNavigate();
 
     const USERS_API_URL = "http://localhost:3000/users";
 
@@ -41,9 +41,32 @@ function SignIn() {
             }
         }, []);
 
-    function signuserin () {
-        // sign the user in based on its username and password
 
+    function authenticate_user (user :any) {
+
+        // Autheticate user by checking username and password with the db
+        if (user.username === username && user.password === password) {
+            //Set sessionStorage token
+            sessionStorage.setItem('token', JSON.stringify(user.token));
+            sessionStorage.setItem('username', JSON.stringify(user.username));
+            sessionStorage.setItem('user_id', JSON.stringify(user.id));
+            
+
+        }
+    }
+
+    function signuserin (username :string, password :string) {
+        // sign the user in based on its username and password
+        const thisuser = allusers.find(user => user.username === username && user.password === password);
+        try {
+            authenticate_user(thisuser);
+        } finally {
+            toast("You have successfully signed in");
+            // Redirect User to the Homepage
+            console.log("hi")
+        }
+        
+        
     }
 
     function resetState() {
@@ -54,6 +77,7 @@ function SignIn() {
   return (
     <div>
         <h1 className='signinformtitle'>Sign in</h1>
+        <Link className='createuserlink' to={'/createuser'}>Click here to create user if you do not have an account yet.</Link>
         <form>
             <div className='formusernametext'>Username:</div>
             <input 
@@ -80,9 +104,10 @@ function SignIn() {
             <button 
                 type='submit'
                 className='signinbutton'
-                onClick={(e) => signuserin()}
+                onClick={(e) => signuserin(username, password)}
             >Sign In</button>
         </form>
+        <ToastContainer />
     </div>
     
   )
