@@ -12,6 +12,7 @@ interface Post {
     unrecommend: number;
     created_at: string;
     updated_at: string;
+    category: string;
 }
 
 const POSTS_API_URL = "http://localhost:3000/posts";
@@ -24,10 +25,12 @@ function getPostApiData() {
 function EditPostForm() {
 
     const [title, setTitle] = useState('');
+    const [category, setCategory] = useState('');
     const [body, setBody] = useState('');
     const [posts, setPosts] = useState([{
         title: "",
         body: "",
+        category: "",
         user_id: 0,
         id: 0,
         recommend: 0,
@@ -58,6 +61,7 @@ function EditPostForm() {
         axios.put<Post>( SPECIFIC_POSTS_API_URL,
             {   title: title,
                 body: body,
+                category: category,
             },
             {
                 headers: {
@@ -78,6 +82,7 @@ function EditPostForm() {
     function resetState() {
         setTitle('');
         setBody('');
+        setCategory('');
     }
 
     const navigate = useNavigate();
@@ -97,6 +102,20 @@ function EditPostForm() {
             defaultValue={ posts.find(post => post.id === post_id)?.title }
             required
         />
+         <div className='newpostbody'>
+            Category:</div>
+            <select 
+                className='category'
+                name='category'
+                onChange={(e) => setCategory(e.target.value)}
+                required
+            >
+                <option value="Summer Exchange Programme" selected>Summer Exchange Programme</option>
+                <option value="Winter Exchange Programme">Winter Exchange Programme</option>
+                <option value="Overseas Exchange Programme">Overseas Exchange Programme</option>
+                <option value="NUS Overseas College">NUS Overseas College</option>
+
+            </select>
         <div className='newpostbody'>
         Body:</div>
         <textarea 

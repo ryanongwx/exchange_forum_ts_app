@@ -1,6 +1,6 @@
 import React from 'react'
 import "../componentcss/posts.css"
-import Comments from './comments'
+import Comments from './Comments'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import recommendimage from "../images/recommend.png"
@@ -36,6 +36,7 @@ interface Post {
     unrecommend: number;
     created_at: string;
     updated_at: string;
+    category: string;
 }
 
 interface Favourite {
@@ -203,14 +204,49 @@ function Posts() {
 
   const youractivityposts = posts?.filter(post => post.user_id === user_id);
   const favouritesposts = posts?.filter(post => favourites?.filter(favourite => favourite.user_id === user_id)
-                            .map(a => a.post_id).includes(post.id))
-
+                            .map(a => a.post_id).includes(post.id));
+  const categories_SummerExchangeProgramme = posts?.filter(post => post.category === "Summer Exchange Programme");
+  const categories_WinterExchangeProgramme = posts?.filter(post => post.category === "Winter Exchange Programme");
+  const categories_OverseasExchangeProgramme = posts?.filter(post => post.category === "Overseas Exchange Programme");
+  const categories_NUSOverseasCollege = posts?.filter(post => post.category === "NUS Overseas College");
+  
+  var item = document.querySelectorAll('.item');
+ 
 
   let finalpost = null;
   if (location.pathname === "/favourites") {
     finalpost  = favouritesposts;
-  } else if (location.pathname === "/youractivity"){
+  } else if (location.pathname === "/yourposts"){
     finalpost  = youractivityposts;
+  } else if (location.pathname === "/categories"){
+    finalpost = posts;
+    for (let i = 0; i < item.length; i++) {
+      item[i].setAttribute("style","height: 530px;");
+    }
+  }else if (location.pathname === "/categories/SummerExchangeProgramme"){
+    finalpost  = categories_SummerExchangeProgramme;
+    // Setting the Post height to be smaller to accomodate the category view
+    for (let i = 0; i < item.length; i++) {
+      item[i].setAttribute("style","height: 530px;");
+    }
+  } else if (location.pathname === "/categories/WinterExchangeProgramme"){
+    finalpost  = categories_WinterExchangeProgramme;
+    // Setting the Post height to be smaller to accomodate the category view
+    for (let i = 0; i < item.length; i++) {
+      item[i].setAttribute("style","height: 530px;");
+    }
+  } else if (location.pathname === "/categories/OverseasExchangeProgramme"){
+    finalpost  = categories_OverseasExchangeProgramme;
+    // Setting the Post height to be smaller to accomodate the category view
+    for (let i = 0; i < item.length; i++) {
+      item[i].setAttribute("style","height: 530px;");
+    }
+  } else if (location.pathname === "/categories/NUSOverseasCollege"){
+    finalpost  = categories_NUSOverseasCollege;
+    // Setting the Post height to be smaller to accomodate the category view
+    for (let i = 0; i < item.length; i++) {
+      item[i].setAttribute("style","height: 530px;");
+    }
   } else {
     finalpost = posts;
   }

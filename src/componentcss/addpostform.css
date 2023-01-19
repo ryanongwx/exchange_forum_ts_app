@@ -24,7 +24,11 @@
 }
 
 .formbody {
-    height: 380px;
+    height: 280px;
     width: 80%;
     padding-bottom: 20px;
+}
+
+.category {
+   width: 80%;
 }

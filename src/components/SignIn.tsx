@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import "../componentcss/signin.css"
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -21,7 +21,6 @@ function SignIn() {
         created_at: "",
         updated_at: "",
     }]);
-    const navigate = useNavigate();
 
     const USERS_API_URL = "http://localhost:3000/users";
 
@@ -58,20 +57,9 @@ function SignIn() {
     function signuserin (username :string, password :string) {
         // sign the user in based on its username and password
         const thisuser = allusers.find(user => user.username === username && user.password === password);
-        try {
-            authenticate_user(thisuser);
-        } finally {
-            toast("You have successfully signed in");
-            // Redirect User to the Homepage
-            console.log("hi")
-        }
-        
-        
-    }
-
-    function resetState() {
-        setUsername('');
-        setPassword('');
+        authenticate_user(thisuser);
+        toast("You have successfully signed in");
+    
     }
 
   return (

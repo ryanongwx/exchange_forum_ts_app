@@ -1,6 +1,6 @@
 
 import './App.css';
-import Navmenu from './NavigationMenu/navmenu';
+import Navmenu from './components/Navmenu';
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 
 import React from 'react'
-import Posts from './posts';
+import Posts from './Posts';
 
 
 const token = sessionStorage.getItem('token');
