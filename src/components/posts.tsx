@@ -210,7 +210,14 @@ function Posts() {
   const categories_OverseasExchangeProgramme = posts?.filter(post => post.category === "Overseas Exchange Programme");
   const categories_NUSOverseasCollege = posts?.filter(post => post.category === "NUS Overseas College");
   
-  var item = document.querySelectorAll('.item');
+  function changepostheight() {
+    var item = document.querySelectorAll('.item');
+    for (let i = 0; i < item.length; i++) {
+      item[i].setAttribute("style","height: 530px;");
+    }
+  }
+  
+
  
 
   let finalpost = null;
@@ -220,39 +227,30 @@ function Posts() {
     finalpost  = youractivityposts;
   } else if (location.pathname === "/categories"){
     finalpost = posts;
-    for (let i = 0; i < item.length; i++) {
-      item[i].setAttribute("style","height: 530px;");
-    }
+    // Setting the Post height to be smaller to accomodate the category view
+    changepostheight();
   }else if (location.pathname === "/categories/SummerExchangeProgramme"){
     finalpost  = categories_SummerExchangeProgramme;
     // Setting the Post height to be smaller to accomodate the category view
-    for (let i = 0; i < item.length; i++) {
-      item[i].setAttribute("style","height: 530px;");
-    }
+    changepostheight();
   } else if (location.pathname === "/categories/WinterExchangeProgramme"){
     finalpost  = categories_WinterExchangeProgramme;
     // Setting the Post height to be smaller to accomodate the category view
-    for (let i = 0; i < item.length; i++) {
-      item[i].setAttribute("style","height: 530px;");
-    }
+    changepostheight();
   } else if (location.pathname === "/categories/OverseasExchangeProgramme"){
     finalpost  = categories_OverseasExchangeProgramme;
     // Setting the Post height to be smaller to accomodate the category view
-    for (let i = 0; i < item.length; i++) {
-      item[i].setAttribute("style","height: 530px;");
-    }
+    changepostheight();
   } else if (location.pathname === "/categories/NUSOverseasCollege"){
     finalpost  = categories_NUSOverseasCollege;
     // Setting the Post height to be smaller to accomodate the category view
-    for (let i = 0; i < item.length; i++) {
-      item[i].setAttribute("style","height: 530px;");
-    }
+    changepostheight();
   } else {
     finalpost = posts;
   }
 
   return (
-    <div>
+    <div >
       
       <ul className="hs">
         

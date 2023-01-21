@@ -1,5 +1,5 @@
 .navmenu {
-    background: #d46a63;
+    background: #F07167;
     height: 85px;
     display: flex;
     justify-content: space-between;
@@ -23,7 +23,7 @@
     display: flex;
     align-items: center;
     border-radius: 6px;
-    background: #637274;
+    background: #0081a7;
     margin-top: 20px;
     padding: 20px 32px;
     color: #000000;
@@ -41,7 +41,7 @@
     display: flex;
     align-items: center;
     border-radius: 6px;
-    background: #69b17b;
+    background: #0081a7;
     margin-top: 20px;
     padding: 20px 32px;
     color: #000000;

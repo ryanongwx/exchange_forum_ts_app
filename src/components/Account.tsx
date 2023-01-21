@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import profilepic from '../images/profilepic.jpeg'
 import '../componentcss/account.css'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 
@@ -42,6 +43,10 @@ function Account() {
         <div>
             <h1>{ users.find(user => user.id === user_id)?.username }</h1>
             <h2>{ users.find(user => user.id === user_id)?.bio }</h2>
+            <br />
+            <Link className="edituserbutton" to={'/edituser'}>
+              Edit User Details
+            </Link>
         </div>
     </div>
   )

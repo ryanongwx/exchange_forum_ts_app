@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import '../componentcss/createuserform.css'
 
@@ -14,35 +14,49 @@ interface User {
 
 const USERS_API_URL = "http://localhost:3000/users";
 
-function makerandomtoken(length :number) {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
+function getUserApiData() {
+    return axios.get(USERS_API_URL).then((response) => response.data);
 }
 
-function AddUserForm() {
+
+function EditUserForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [bio, setBio] = useState('');
     const [imageid, setimageid] = useState('');
+    const [users, setUsers] = useState([ {
+        bio: "",
+        image_id: "",
+        id: 0,
+        password: "",
+        token: "",
+        username: "",
+    }]);
 
     const navigate = useNavigate();
+    const user_id = Number(sessionStorage.getItem('user_id'));
 
-    function registerUser() {
+    useEffect(() => {
+        let mounted = true;
+        getUserApiData().then((items) => {
+          if (mounted) {
+            setUsers(items);
+          }
+        });
+          
+        return () => {
+          mounted = false;
+        }
+      }, []);
 
-        // Generate random token of 20 characters
-        const token = makerandomtoken(20);
+    function edituser() {
 
+        const SPECIFIC_USERS_API_URL = "http://localhost:3000/users/" + user_id;
         // Post the user data to the rails db
-        axios.post<User>( USERS_API_URL,
+        axios.put<User>( SPECIFIC_USERS_API_URL,
             {   bio: bio,
                 image_id: imageid,
                 password: password,
-                token: token,
                 username: username,
             },
             {
@@ -53,13 +67,13 @@ function AddUserForm() {
             },
         );
 
-        navigate("/signin")
+        navigate("/")
     return ;
     }
 
   return (
     <div>
-    <h1 className='createusertitle'>Create New Account</h1>
+    <h1 className='createusertitle'>Update User Details</h1>
     <form>
         <div className='formtext'>Username:</div>
         <input 
@@ -67,6 +81,7 @@ function AddUserForm() {
             type="text"
             name="Username"
             onChange={(e) => setUsername(e.target.value)}
+            defaultValue={users.find(user => user.id === user_id)?.username}
             required
         />
         <div className='formtext'>
@@ -76,6 +91,7 @@ function AddUserForm() {
             className='formentry'
             name="Password"
             onChange={(e) => setPassword(e.target.value)}
+            defaultValue={users.find(user => user.id === user_id)?.password}
             required
         />
 
@@ -86,6 +102,7 @@ function AddUserForm() {
                 className='formentry'
                 name="Bio"
                 onChange={(e) => setBio(e.target.value)}
+                defaultValue={users.find(user => user.id === user_id)?.bio}
                 required
         />
 
@@ -96,6 +113,7 @@ function AddUserForm() {
                 className='formentry'
                 name="Image"
                 onChange={(e) => setimageid(e.target.value)}
+                defaultValue={users.find(user => user.id === user_id)?.image_id}
                 required
         />
 
@@ -106,11 +124,11 @@ function AddUserForm() {
         <button 
             type='submit'
             className='signinbutton'
-            onClick={(e) => registerUser()}
-        >Create User</button>
+            onClick={(e) => edituser()}
+        >Edit User Details</button>
     </form>
 </div>
   )
 }
 
-export default AddUserForm
+export default EditUserForm

@@ -9,6 +9,7 @@ import Account from './Account'
 import EditPostForm from './EditPostForm'
 import AddPostForm from './AddPostForm'
 import Categories from './Categories'
+import EditUserForm from './EditUserForm'
 
 
 // React functional component
@@ -48,6 +49,7 @@ const Navmenu: React.FC<{}> = () => {
           <Route path='/addpost' element= { <AddPostForm /> }/>
           <Route path='/signin' element= { <SignIn /> }/>
           <Route path='/createuser' element= { <AddUserForm /> } />
+          <Route path='/edituser' element= { <EditUserForm /> } />
           <Route path='/yourposts' element= { <Homepage /> } />
           <Route path='/addcomment' element = { <AddCommentForm /> } />
           <Route path='/account' element = { <Account /> } />

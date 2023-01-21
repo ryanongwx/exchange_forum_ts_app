@@ -12,7 +12,7 @@
     scroll-snap-align: center;
     display: flex;
     flex-direction: column;
-    background: rgb(117, 170, 231);
+    background: #00AFB9;
     border-radius: 8px;
     height: 630px;
   }
@@ -42,7 +42,6 @@
   .recommend {
     margin-right: 10px;
     text-align: right;
-
   }
 
   .sidebyside { 
@@ -58,7 +57,7 @@
   display: flex;
   align-items: center;
   border-radius: 6px;
-  background: #637274;
+  background: #FDFCDC;
   margin-top: 20px;
   padding: 20px 32px;
   color: #000000;
@@ -86,7 +85,7 @@
   display: flex;
   align-items: center;
   border-radius: 6px;
-  background: #ff0000;
+  background: #FDFCDC;
   margin-top: 20px;
   padding: 20px 32px;
   color: #000000;
@@ -108,7 +107,7 @@
   display: flex;
   align-items: center;
   border-radius: 6px;
-  background: #ecee79;
+  background: #FDFCDC;
   margin-top: 20px;
   padding: 20px 32px;
   color: #000000;
@@ -136,3 +135,4 @@
 .shrink {
   height:40px;
 }
+

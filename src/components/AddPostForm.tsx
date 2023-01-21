@@ -57,6 +57,7 @@ function AddPostForm() {
         navigate("/");
     }
 
+
     function resetState() {
         setTitle('');
         setBody('');

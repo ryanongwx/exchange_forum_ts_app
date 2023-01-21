@@ -13,7 +13,7 @@
     scroll-snap-align: center;
     display: flex;
     flex-direction: row;
-    background: rgb(248, 230, 150);
+    background: #FED9B7;
     border-radius: 8px;
     height: 100%;
   }
