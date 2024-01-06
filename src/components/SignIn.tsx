@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import "../componentcss/signin.css"
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -11,6 +12,7 @@ function SignIn() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
     const [allusers, setUsers] = useState([{
         bio: "",
         image_id: "",
@@ -49,8 +51,6 @@ function SignIn() {
             sessionStorage.setItem('token', JSON.stringify(user.token));
             sessionStorage.setItem('username', JSON.stringify(user.username));
             sessionStorage.setItem('user_id', JSON.stringify(user.id));
-
-
         }
     }
 
@@ -59,6 +59,7 @@ function SignIn() {
         const thisuser = allusers.find(user => user.username === username && user.password === password);
         authenticate_user(thisuser);
         toast("You have successfully signed in");
+        navigate("/")
 
     }
 
