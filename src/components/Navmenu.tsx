@@ -15,7 +15,7 @@ import EditUserForm from './EditUserForm'
 // React functional component
 const Navmenu: React.FC<{}> = () => {
 
-  const username :string= sessionStorage.getItem('username')?.toString()!;
+  const username: string = sessionStorage.getItem('username')?.toString()!;
   const token = sessionStorage.getItem('token');
 
   if (token) {
@@ -41,26 +41,26 @@ const Navmenu: React.FC<{}> = () => {
             Add Post
           </Link>
           <Link className="menubutton" to={'/'}>
-            { "Welcome, " + username.replace(/['"]+/g, '') }
+            {"Welcome, " + username.replace(/['"]+/g, '')}
           </Link>
         </nav>
         <Routes>
-          <Route path='/' element= { <Homepage /> }/>
-          <Route path='/addpost' element= { <AddPostForm /> }/>
-          <Route path='/signin' element= { <SignIn /> }/>
-          <Route path='/createuser' element= { <AddUserForm /> } />
-          <Route path='/edituser' element= { <EditUserForm /> } />
-          <Route path='/yourposts' element= { <Homepage /> } />
-          <Route path='/addcomment' element = { <AddCommentForm /> } />
-          <Route path='/account' element = { <Account /> } />
-          <Route path='/editpost' element = { <EditPostForm /> } />
-          <Route path='/favourites' element = { <Homepage /> } />
-          <Route path='/categories/' element = { <Categories /> } />
-          <Route path='/categories/:string' element = { <Categories /> } />
+          <Route path='/' element={<Homepage />} />
+          <Route path='/addpost' element={<AddPostForm />} />
+          <Route path='/signin' element={<SignIn />} />
+          <Route path='/createuser' element={<AddUserForm />} />
+          <Route path='/edituser' element={<EditUserForm />} />
+          <Route path='/yourposts' element={<Homepage />} />
+          <Route path='/addcomment' element={<AddCommentForm />} />
+          <Route path='/account' element={<Account />} />
+          <Route path='/editpost' element={<EditPostForm />} />
+          <Route path='/favourites' element={<Homepage />} />
+          <Route path='/categories/' element={<Categories />} />
+          <Route path='/categories/:string' element={<Categories />} />
         </Routes>
-        
+
       </Router>
-      
+
     )
   } else {
     return (
@@ -86,17 +86,17 @@ const Navmenu: React.FC<{}> = () => {
           </Link>
         </nav>
         <Routes>
-          <Route path='/' element= { <Homepage /> }/>
-          <Route path='/signin' element= { <SignIn /> }/>
-          <Route path='/createuser' element= { <AddUserForm /> } />
+          <Route path='/' element={<Homepage />} />
+          <Route path='/signin' element={<SignIn />} />
+          <Route path='/createuser' element={<AddUserForm />} />
         </Routes>
 
       </Router>
-      
+
     )
   }
 
-  
+
 }
 
 export default Navmenu

@@ -10,15 +10,15 @@ interface User {
     password: string;
     token: string;
     username: string
-  }
+}
 
-const USERS_API_URL = "http://localhost:3000/users";
+const USERS_API_URL = "https://exchange-forum-rails-backend.onrender.com/users";
 
-function makerandomtoken(length :number) {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+function makerandomtoken(length: number) {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
+    for (var i = 0; i < length; i++) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
@@ -38,8 +38,9 @@ function AddUserForm() {
         const token = makerandomtoken(20);
 
         // Post the user data to the rails db
-        axios.post<User>( USERS_API_URL,
-            {   bio: bio,
+        axios.post<User>(USERS_API_URL,
+            {
+                bio: bio,
                 image_id: imageid,
                 password: password,
                 token: token,
@@ -48,69 +49,69 @@ function AddUserForm() {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                Accept: 'application/json',
+                    Accept: 'application/json',
                 },
             },
         );
 
         navigate("/signin")
-    return ;
+        return;
     }
 
-  return (
-    <div>
-    <h1 className='createusertitle'>Create New Account</h1>
-    <form>
-        <div className='formtext'>Username:</div>
-        <input 
-            className='formentry'
-            type="text"
-            name="Username"
-            onChange={(e) => setUsername(e.target.value)}
-            required
-        />
-        <div className='formtext'>
-        Password:</div>
-        <input
-            type="text" 
-            className='formentry'
-            name="Password"
-            onChange={(e) => setPassword(e.target.value)}
-            required
-        />
+    return (
+        <div>
+            <h1 className='createusertitle'>Create New Account</h1>
+            <form>
+                <div className='formtext'>Username:</div>
+                <input
+                    className='formentry'
+                    type="text"
+                    name="Username"
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                />
+                <div className='formtext'>
+                    Password:</div>
+                <input
+                    type="text"
+                    className='formentry'
+                    name="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
 
-        <div className='formtext'>
-            Bio:</div>
-            <input
-                type="text" 
-                className='formentry'
-                name="Bio"
-                onChange={(e) => setBio(e.target.value)}
-                required
-        />
+                <div className='formtext'>
+                    Bio:</div>
+                <input
+                    type="text"
+                    className='formentry'
+                    name="Bio"
+                    onChange={(e) => setBio(e.target.value)}
+                    required
+                />
 
-        <div className='formtext'>
-            Image ID:</div>
-            <input
-                type="text" 
-                className='formentry'
-                name="Image"
-                onChange={(e) => setimageid(e.target.value)}
-                required
-        />
+                <div className='formtext'>
+                    Image ID:</div>
+                <input
+                    type="text"
+                    className='formentry'
+                    name="Image"
+                    onChange={(e) => setimageid(e.target.value)}
+                    required
+                />
 
-        <br/>
-        <br/>
-        <br/>
+                <br />
+                <br />
+                <br />
 
-        <button 
-            type='submit'
-            className='signinbutton'
-            onClick={(e) => registerUser()}
-        >Create User</button>
-    </form>
-</div>
-  )
+                <button
+                    type='submit'
+                    className='signinbutton'
+                    onClick={(e) => registerUser()}
+                >Create User</button>
+            </form>
+        </div>
+    )
 }
 
 export default AddUserForm

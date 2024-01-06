@@ -7,8 +7,8 @@ const token = sessionStorage.getItem('token');
 function Index() {
   return (
     token
-    ? <Posts />
-    : <h1>Please Sign In</h1>
+      ? <Posts />
+      : <h1>Please Sign In</h1>
   )
 }
 

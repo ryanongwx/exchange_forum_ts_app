@@ -14,7 +14,7 @@ interface Comment {
     updated_at: string;
 }
 
-const COMMENTS_API_URL = "http://localhost:3000/comments";
+const COMMENTS_API_URL = "https://exchange-forum-rails-backend.onrender.com/comments";
 
 function AddCommentForm() {
 
@@ -22,16 +22,16 @@ function AddCommentForm() {
 
     const navigate = useNavigate();
 
-    function submitnewcomment () {
+    function submitnewcomment() {
 
         // Retrieve user_id from sessionStorage
         const user_id = Number(sessionStorage.getItem('user_id'));
         const post_id = Number(sessionStorage.getItem('commentpost'));
 
-        
+
         // Post the post data to the rails db in the comments table
-        axios.post<Comment>( COMMENTS_API_URL,
-            { 
+        axios.post<Comment>(COMMENTS_API_URL,
+            {
                 body: body,
                 user_id: user_id,
                 post_id: post_id,
@@ -41,7 +41,7 @@ function AddCommentForm() {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                Accept: 'application/json',
+                    Accept: 'application/json',
                 },
             },
         );
@@ -55,32 +55,32 @@ function AddCommentForm() {
         setBody('');
     }
 
-  return (
-    <div>
-        <h1 className='postformtitle'>Create New Comment</h1>
-        <form>
-            <div className='newpostbody'>
-            Body:</div>
-            <textarea 
-                className='formbody'
-                name="Body"
-                onChange={(e) => setBody(e.target.value)}
-                required
-            />
+    return (
+        <div>
+            <h1 className='postformtitle'>Create New Comment</h1>
+            <form>
+                <div className='newpostbody'>
+                    Body:</div>
+                <textarea
+                    className='formbody'
+                    name="Body"
+                    onChange={(e) => setBody(e.target.value)}
+                    required
+                />
 
-            <br/>
-            <br/>
+                <br />
+                <br />
 
-            <button 
-                type='submit'
-                className='submitbutton'
-                onClick={(e) => submitnewcomment()}
-            >Submit New Comment</button>
-        </form>
+                <button
+                    type='submit'
+                    className='submitbutton'
+                    onClick={(e) => submitnewcomment()}
+                >Submit New Comment</button>
+            </form>
 
-    </div>
-    
-  )
+        </div>
+
+    )
 }
 
 export default AddCommentForm

@@ -15,11 +15,11 @@ interface Post {
     category: string;
 }
 
-const POSTS_API_URL = "http://localhost:3000/posts";
+const POSTS_API_URL = "https://exchange-forum-rails-backend.onrender.com/posts";
 
 function getPostApiData() {
     return axios.get(POSTS_API_URL).then((response) => response.data);
-  }
+}
 
 
 function EditPostForm() {
@@ -43,35 +43,36 @@ function EditPostForm() {
     useEffect(() => {
         let mounted = true;
         getPostApiData().then((items) => {
-          if (mounted) {
-            setPosts(items);
-          }
+            if (mounted) {
+                setPosts(items);
+            }
         });
-          
+
         return () => {
-          mounted = false;
+            mounted = false;
         }
-      }, []);
+    }, []);
 
-    function editpost () {
+    function editpost() {
 
-        const SPECIFIC_POSTS_API_URL = "http://localhost:3000/posts/" + post_id;
+        const SPECIFIC_POSTS_API_URL = "https://exchange-forum-rails-backend.onrender.com/posts/" + post_id;
 
         // Post the post data to the rails db
-        axios.put<Post>( SPECIFIC_POSTS_API_URL,
-            {   title: title,
+        axios.put<Post>(SPECIFIC_POSTS_API_URL,
+            {
+                title: title,
                 body: body,
                 category: category,
             },
             {
                 headers: {
                     'Content-Type': 'application/json',
-                Accept: 'application/json',
+                    Accept: 'application/json',
                 },
             },
         );
 
-    
+
         // Reset states back to original blank states
         resetState();
 
@@ -89,54 +90,54 @@ function EditPostForm() {
     const post_id = Number(sessionStorage.getItem('commentpost'))
 
 
-  return (
-    <div>
-        <h1 className='postformtitle'>Edit Post</h1>
-        <form>
-        <div className='newposttitle'>Title:</div>
-        <input 
-            className='formtitle'
-            type="text"
-            name="Title"
-            onChange={(e) => setTitle(e.target.value)}
-            defaultValue={ posts.find(post => post.id === post_id)?.title }
-            required
-        />
-         <div className='newpostbody'>
-            Category:</div>
-            <select 
-                className='category'
-                name='category'
-                onChange={(e) => setCategory(e.target.value)}
-                required
-            >
-                <option value="Summer Exchange Programme" selected>Summer Exchange Programme</option>
-                <option value="Winter Exchange Programme">Winter Exchange Programme</option>
-                <option value="Overseas Exchange Programme">Overseas Exchange Programme</option>
-                <option value="NUS Overseas College">NUS Overseas College</option>
+    return (
+        <div>
+            <h1 className='postformtitle'>Edit Post</h1>
+            <form>
+                <div className='newposttitle'>Title:</div>
+                <input
+                    className='formtitle'
+                    type="text"
+                    name="Title"
+                    onChange={(e) => setTitle(e.target.value)}
+                    defaultValue={posts.find(post => post.id === post_id)?.title}
+                    required
+                />
+                <div className='newpostbody'>
+                    Category:</div>
+                <select
+                    className='category'
+                    name='category'
+                    onChange={(e) => setCategory(e.target.value)}
+                    required
+                >
+                    <option value="Summer Exchange Programme" selected>Summer Exchange Programme</option>
+                    <option value="Winter Exchange Programme">Winter Exchange Programme</option>
+                    <option value="Overseas Exchange Programme">Overseas Exchange Programme</option>
+                    <option value="NUS Overseas College">NUS Overseas College</option>
 
-            </select>
-        <div className='newpostbody'>
-        Body:</div>
-        <textarea 
-            className='formbody'
-            name="Body"
-            onChange={(e) => setBody(e.target.value)}
-            defaultValue= { posts.find(post => post.id === post_id)?.body }
-            required  
-        />
+                </select>
+                <div className='newpostbody'>
+                    Body:</div>
+                <textarea
+                    className='formbody'
+                    name="Body"
+                    onChange={(e) => setBody(e.target.value)}
+                    defaultValue={posts.find(post => post.id === post_id)?.body}
+                    required
+                />
 
-        <br/>
-        <br/>
+                <br />
+                <br />
 
-        <button 
-            type='submit'
-            className='submitbutton'
-            onClick={(e) => editpost()}
-        >Edit Post</button>
-    </form>
-    </div>
-  )
+                <button
+                    type='submit'
+                    className='submitbutton'
+                    onClick={(e) => editpost()}
+                >Edit Post</button>
+            </form>
+        </div>
+    )
 }
 
 export default EditPostForm

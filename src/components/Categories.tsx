@@ -6,19 +6,19 @@ import '../componentcss/categories.css'
 function Categories() {
   return (
     <div>
-    <Link className='categorybutton' to={'/categories/SummerExchangeProgramme'} >
+      <Link className='categorybutton' to={'/categories/SummerExchangeProgramme'} >
         Summer Exchange Programme
-    </Link>
-    <Link className='categorybutton' to={'/categories/WinterExchangeProgramme'} >
+      </Link>
+      <Link className='categorybutton' to={'/categories/WinterExchangeProgramme'} >
         Winter Exchange Programme
-    </Link>
-    <Link className='categorybutton' to={'/categories/OverseasExchangeProgramme'} >
+      </Link>
+      <Link className='categorybutton' to={'/categories/OverseasExchangeProgramme'} >
         Overseas Exchange Programme
-    </Link>
-    <Link className='categorybutton' to={'/categories/NUSOverseasCollege'} >
+      </Link>
+      <Link className='categorybutton' to={'/categories/NUSOverseasCollege'} >
         NUS Overseas College
-    </Link>
-    <Posts />
+      </Link>
+      <Posts />
     </div>
   )
 }

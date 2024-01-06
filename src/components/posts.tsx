@@ -11,9 +11,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const COMMENTS_API_URL = "http://localhost:3000/comments";
-const FAVOURITES_API_URL = "http://localhost:3000/favourites";
-const POSTS_API_URL = "http://localhost:3000/posts";
+const COMMENTS_API_URL = "https://exchange-forum-rails-backend.onrender.com/comments";
+const FAVOURITES_API_URL = "https://exchange-forum-rails-backend.onrender.com/favourites";
+const POSTS_API_URL = "https://exchange-forum-rails-backend.onrender.com/posts";
 
 function getCommentApiData() {
   return axios.get(COMMENTS_API_URL).then((response) => response.data);
@@ -119,7 +119,7 @@ function Posts() {
   function deletepost(id: number) {
     // Deletes post from rails db
 
-    const POSTS_API_URL = "http://localhost:3000/posts/" + id;
+    const POSTS_API_URL = "https://exchange-forum-rails-backend.onrender.com/posts/" + id;
     axios.delete(POSTS_API_URL);
 
   }
@@ -127,7 +127,7 @@ function Posts() {
   function addrecommend(instruction: string, id: number, count: number) {
     // Alters recommend field in POSTS DB 
 
-    const POSTS_API_URL = "http://localhost:3000/posts/" + id;
+    const POSTS_API_URL = "https://exchange-forum-rails-backend.onrender.com/posts/" + id;
     const updated_count = count + 1;
 
     if (instruction === "recommend") {
@@ -197,7 +197,7 @@ function Posts() {
     // Find the favourite id for deletion
     const favourite_id = favourites?.find(favourite => favourite.post_id === id && favourite.user_id === user_id)?.id;
 
-    const FAVOURITES_API_URL = "http://localhost:3000/favourites/" + favourite_id;
+    const FAVOURITES_API_URL = "https://exchange-forum-rails-backend.onrender.com/favourites/" + favourite_id;
     axios.delete(FAVOURITES_API_URL);
     toast("Favourite removed")
   }

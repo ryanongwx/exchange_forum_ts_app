@@ -15,7 +15,7 @@ interface Post {
     updated_at: string;
 }
 
-const POSTS_API_URL = "http://localhost:3000/posts";
+const POSTS_API_URL = "https://exchange-forum-rails-backend.onrender.com/posts";
 
 
 function AddPostForm() {
@@ -23,18 +23,19 @@ function AddPostForm() {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [category, setCategory] = useState('');
-    
+
     const navigate = useNavigate();
 
-    function submitnewpost () {
+    function submitnewpost() {
 
         // Retrieve user_id from sessionStorage
         const user_id = Number(sessionStorage.getItem('user_id'));
 
         // to do
         // Post the post data to the rails db
-        axios.post<Post>( POSTS_API_URL,
-            {   title: title,
+        axios.post<Post>(POSTS_API_URL,
+            {
+                title: title,
                 body: body,
                 user_id: user_id,
                 recommend: 0,
@@ -44,12 +45,12 @@ function AddPostForm() {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                Accept: 'application/json',
+                    Accept: 'application/json',
                 },
             },
         );
 
-    
+
         // Reset states back to original blank states
         resetState();
 
@@ -64,54 +65,54 @@ function AddPostForm() {
         setCategory('');
     }
 
-  return (
-    <div>
-        <h1 className='postformtitle'>Create New Post</h1>
-        <form>
-            <div className='newposttitle'>Title:</div>
-            <input 
-                className='formtitle'
-                type="text"
-                name="Title"
-                onChange={(e) => setTitle(e.target.value)}
-                required
-            />
+    return (
+        <div>
+            <h1 className='postformtitle'>Create New Post</h1>
+            <form>
+                <div className='newposttitle'>Title:</div>
+                <input
+                    className='formtitle'
+                    type="text"
+                    name="Title"
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
+                />
 
-            <div className='newpostbody'>
-            Category:</div>
-            <select 
-                className='category'
-                name='category'
-                onChange={(e) => setCategory(e.target.value)}
-                required
-            >
-                <option value="Summer Exchange Programme" selected>Summer Exchange Programme</option>
-                <option value="Winter Exchange Programme">Winter Exchange Programme</option>
-                <option value="Overseas Exchange Programme">Overseas Exchange Programme</option>
-                <option value="NUS Overseas College">NUS Overseas College</option>
+                <div className='newpostbody'>
+                    Category:</div>
+                <select
+                    className='category'
+                    name='category'
+                    onChange={(e) => setCategory(e.target.value)}
+                    required
+                >
+                    <option value="Summer Exchange Programme" selected>Summer Exchange Programme</option>
+                    <option value="Winter Exchange Programme">Winter Exchange Programme</option>
+                    <option value="Overseas Exchange Programme">Overseas Exchange Programme</option>
+                    <option value="NUS Overseas College">NUS Overseas College</option>
 
-            </select>
-            <div className='newpostbody'>
-            Body:</div>
-            <textarea 
-                className='formbody'
-                name="Body"
-                onChange={(e) => setBody(e.target.value)}
-                required
-            />
+                </select>
+                <div className='newpostbody'>
+                    Body:</div>
+                <textarea
+                    className='formbody'
+                    name="Body"
+                    onChange={(e) => setBody(e.target.value)}
+                    required
+                />
 
-            <br/>
-            <br/>
+                <br />
+                <br />
 
-            <button 
-                type='submit'
-                className='submitbutton'
-                onClick={(e) => submitnewpost()}
-            >Submit New Post</button>
-        </form>
-    </div>
-    
-  )
+                <button
+                    type='submit'
+                    className='submitbutton'
+                    onClick={(e) => submitnewpost()}
+                >Submit New Post</button>
+            </form>
+        </div>
+
+    )
 }
 
 export default AddPostForm

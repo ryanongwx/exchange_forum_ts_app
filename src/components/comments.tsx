@@ -24,7 +24,7 @@ interface CommentProps {
 function Comments(props: CommentProps) {
 
   function addrecommend(instruction: string, id: number, count: number) {
-    const COMMENTS_API_URL = "http://localhost:3000/comments/" + id;
+    const COMMENTS_API_URL = "https://exchange-forum-rails-backend.onrender.com/comments/" + id;
     const updated_count = count + 1;
     // Update the number of recommend/unrecommend in database in rails
 
@@ -63,7 +63,7 @@ function Comments(props: CommentProps) {
 
   function deletecomment(id: number) {
     // Deletes comment from rails db
-    const COMMENTS_API_URL = "http://localhost:3000/comments/" + id;
+    const COMMENTS_API_URL = "https://exchange-forum-rails-backend.onrender.com/comments/" + id;
     axios.delete(COMMENTS_API_URL);
 
     window.location.reload();
