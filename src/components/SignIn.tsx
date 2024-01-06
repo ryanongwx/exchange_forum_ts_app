@@ -60,6 +60,7 @@ function SignIn() {
         authenticate_user(thisuser);
         toast("You have successfully signed in");
         navigate("/")
+        window.location.reload();
 
     }
 
